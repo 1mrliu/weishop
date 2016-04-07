@@ -34,9 +34,9 @@ public class tapTwo extends Fragment {
 		final ListView lv_1 = (ListView) view.findViewById(R.id.cont1);
 		final ListView lv_2 = (ListView) view.findViewById(R.id.cont2);
 		final ListView lv_3 = (ListView) view.findViewById(R.id.cont3);
-		final ListView lv_4 = (ListView) view.findViewById(R.id.cont1);
-		final ListView lv_5 = (ListView) view.findViewById(R.id.cont2);
-		final ListView lv_6 = (ListView) view.findViewById(R.id.cont3);
+		final ListView lv_4 = (ListView) view.findViewById(R.id.cont4);
+		final ListView lv_5 = (ListView) view.findViewById(R.id.cont5);
+		final ListView lv_6 = (ListView) view.findViewById(R.id.cont6);
 
 		// getActivity使用在适配器中适用于Fragment中s
 		ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(
@@ -59,57 +59,56 @@ public class tapTwo extends Fragment {
 				if (data[position].equals("热卖专区")) 
 				{
 					lv_1.setVisibility(View.VISIBLE);
-					lv_2.setVisibility(View.INVISIBLE);
-				
-					lv_3.setVisibility(View.INVISIBLE);
-					lv_4.setVisibility(View.INVISIBLE);
-					lv_5.setVisibility(View.INVISIBLE);
-					lv_6.setVisibility(View.INVISIBLE);
+					lv_2.setVisibility(View.GONE);
+					lv_3.setVisibility(View.GONE);
+					lv_4.setVisibility(View.GONE);
+					lv_5.setVisibility(View.GONE);
+					lv_6.setVisibility(View.GONE);
 
 				}
 				if (data[position].equals("进口精品")) 
 				{
-					lv_1.setVisibility(View.INVISIBLE);
+					lv_1.setVisibility(View.GONE);
 					lv_2.setVisibility(View.VISIBLE);
-					lv_3.setVisibility(View.INVISIBLE);
-					lv_4.setVisibility(View.INVISIBLE);
-					lv_5.setVisibility(View.INVISIBLE);
-					lv_6.setVisibility(View.INVISIBLE);
+					lv_3.setVisibility(View.GONE);
+					lv_4.setVisibility(View.GONE);
+					lv_5.setVisibility(View.GONE);
+					lv_6.setVisibility(View.GONE);
 				}
 				if (data[position].equals("国产优选")) 
 				{
-					lv_1.setVisibility(View.INVISIBLE);
-					lv_2.setVisibility(View.INVISIBLE);
+					lv_1.setVisibility(View.GONE);
+					lv_2.setVisibility(View.GONE);
 					lv_3.setVisibility(View.VISIBLE);
-					lv_4.setVisibility(View.INVISIBLE);
-					lv_5.setVisibility(View.INVISIBLE);
-					lv_6.setVisibility(View.INVISIBLE);
+					lv_4.setVisibility(View.GONE);
+					lv_5.setVisibility(View.GONE);
+					lv_6.setVisibility(View.GONE);
 				}
 				if (data[position].equals("森林干果")) 
 				{
-					lv_1.setVisibility(View.INVISIBLE);
-					lv_2.setVisibility(View.INVISIBLE);
-					lv_3.setVisibility(View.INVISIBLE);
+					lv_1.setVisibility(View.GONE);
+					lv_2.setVisibility(View.GONE);
+					lv_3.setVisibility(View.GONE);
 					lv_4.setVisibility(View.VISIBLE);
-					lv_5.setVisibility(View.INVISIBLE);
-					lv_6.setVisibility(View.INVISIBLE);
+					lv_5.setVisibility(View.GONE);
+					lv_6.setVisibility(View.GONE);
 				}
 				if (data[position].equals("礼盒整箱")) 
 				{
-					lv_1.setVisibility(View.INVISIBLE);
-					lv_2.setVisibility(View.INVISIBLE);
-					lv_3.setVisibility(View.INVISIBLE);
-					lv_4.setVisibility(View.INVISIBLE);
+					lv_1.setVisibility(View.GONE);
+					lv_2.setVisibility(View.GONE);
+					lv_3.setVisibility(View.GONE);
+					lv_4.setVisibility(View.GONE);
 					lv_5.setVisibility(View.VISIBLE);
-					lv_6.setVisibility(View.INVISIBLE);
+					lv_6.setVisibility(View.GONE);
 				}
 				if (data[position].equals("新鲜果汁")) 
 				{
-					lv_1.setVisibility(View.INVISIBLE);
-					lv_2.setVisibility(View.INVISIBLE);
-					lv_3.setVisibility(View.INVISIBLE);
-					lv_4.setVisibility(View.INVISIBLE);
-					lv_5.setVisibility(View.INVISIBLE);
+					lv_1.setVisibility(View.GONE);
+					lv_2.setVisibility(View.GONE);
+					lv_3.setVisibility(View.GONE);
+					lv_4.setVisibility(View.GONE);
+					lv_5.setVisibility(View.GONE);
 					lv_6.setVisibility(View.VISIBLE);
 				}
 
@@ -168,7 +167,7 @@ public class tapTwo extends Fragment {
 		
 		// 森林干果界面
 		ArrayList<HashMap<String, Object>> listItem_4 = new ArrayList<HashMap<String, Object>>();
-		for (int i = 1; i < 6; i++) {
+		for (int i = 1; i < 5; i++) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("imageView", R.drawable.ic_launcher);
 			map.put("titleTextView", "森林干果");
@@ -177,8 +176,8 @@ public class tapTwo extends Fragment {
 		}
 		SimpleAdapter mSimpleAdapter_4 = new SimpleAdapter(getActivity(),
 				listItem_4, R.layout.list_item, new String[] { "imageView",
-						"titleTextView", "descTextView" }, new int[] {
-						R.id.imageView, R.id.titleTextView, R.id.descTextView });
+				"titleTextView", "descTextView" }, new int[] {
+				R.id.imageView, R.id.titleTextView, R.id.descTextView });
 		lv_4.setAdapter(mSimpleAdapter_4);// 为ListView绑定适配器
 		
 		// 礼盒整箱界面

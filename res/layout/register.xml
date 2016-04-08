@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   android:background="#2578B3"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"      
+        android:background="#316A9D"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/top_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="#FFFFFF"
+            android:text="登陆界面"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/top_left_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/rt_bk" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:text="用户名"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="235dp"
+            android:layout_height="wrap_content"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/user_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:text="密    码"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="235dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword" />
+
+        <requestFocus />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="296dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"           
+            android:background="#316A9D"
+            android:textColor="#FFFFFF"                     
+            android:text="登录" />
+
+        <TextView
+            android:id="@+id/sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"            
+            android:gravity="right"
+            android:textSize="15dp"
+            android:textColor="#FFFFFF"
+            android:text="还没有账号，点击立即注册！" />
+    </LinearLayout>
+
+</LinearLayout>

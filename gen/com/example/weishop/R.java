@@ -1199,9 +1199,9 @@ containing a value of this type.
         public static final int title=0x7f05002b;
         public static final int titleTextView=0x7f050045;
         public static final int top_action_bar=0x7f050020;
-        public static final int top_left_image=0x7f05004b;
+        public static final int top_left_image=0x7f05004c;
         public static final int top_right_image=0x7f050055;
-        public static final int top_text=0x7f05004c;
+        public static final int top_text=0x7f05004b;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
         public static final int user_code=0x7f05004f;
@@ -1267,12 +1267,13 @@ containing a value of this type.
         public static final int list_item_type=0x7f03001b;
         public static final int login=0x7f03001c;
         public static final int main=0x7f03001d;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
-        public static final int tab01=0x7f03001f;
-        public static final int tab02=0x7f030020;
-        public static final int tab03=0x7f030021;
-        public static final int tab04=0x7f030022;
-        public static final int top=0x7f030023;
+        public static final int register=0x7f03001e;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001f;
+        public static final int tab01=0x7f030020;
+        public static final int tab02=0x7f030021;
+        public static final int tab03=0x7f030022;
+        public static final int tab04=0x7f030023;
+        public static final int top=0x7f030024;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;

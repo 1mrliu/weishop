@@ -22,10 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<activity android:name="com.example.weishop.tapOne"  />  
-<activity android:name="com.example.weishop.tapTwo"/>  
-<activity android:name="com.example.weishop.tapThree"/>  
-<activity android:name="com.example.weishop.tapFour"/>  
+        <activity android:name="com.example.weishop.tapOne" />
+        <activity android:name="com.example.weishop.tapTwo" />
+        <activity android:name="com.example.weishop.tapThree" />
+        <activity android:name="com.example.weishop.tapFour" />
+        <activity android:name="com.example.weishop.Login"></activity>
     </application>
 
 </manifest>

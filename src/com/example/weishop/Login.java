@@ -1,11 +1,13 @@
 package com.example.weishop;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,18 @@ public class Login extends  ActionBarActivity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
+		//返回按键
+		ImageView imageView_back=(ImageView)findViewById(R.id.top_left_image);
+		imageView_back.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(Login.this,Main.class);
+				startActivity(intent);
+			}
+		});
+		
 		//获取输入的信息
 		EditText  ET_name=(EditText)findViewById(R.id.editText1);
 		final String name=ET_name.getText().toString();

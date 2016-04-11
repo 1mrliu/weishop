@@ -1,14 +1,20 @@
 package com.example.weishop;
 
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import android.app.AlertDialog;
+import java.util.Map;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,301 +26,193 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-
-import com.example.util.Audition1.ViewHolder;
-import com.example.util.MmDdapter;
+import android.widget.Toast;
 
 public class tapTwo extends Fragment {
+	
 	public String[] data = { "热卖专区", "进口精品", "国产优选", "森林干果", "礼盒整箱", "新鲜果汁" };
-
+	private List<Map<String, Object>> mListItem;
+	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.tab02, container, false);
-
+		final View view = inflater.inflate(R.layout.tab02, container, false);
 		// 商品分类
-		final ListView lv_type = (ListView) view
-				.findViewById(android.R.id.list);
+		final ListView lv_type = (ListView) view.findViewById(android.R.id.list);
 
+		ArrayAdapter<String>  lv_type_adapter=new ArrayAdapter<String>(getActivity(),
+				android.R.layout.simple_list_item_1,data);
+		lv_type.setAdapter(lv_type_adapter);
+		
 		// 商品详细情况展示
-		final ListView lv_1 = (ListView) view.findViewById(R.id.cont1);
-		final ListView lv_2 = (ListView) view.findViewById(R.id.cont2);
-		final ListView lv_3 = (ListView) view.findViewById(R.id.cont3);
-		final ListView lv_4 = (ListView) view.findViewById(R.id.cont4);
-		final ListView lv_5 = (ListView) view.findViewById(R.id.cont5);
-		final ListView lv_6 = (ListView) view.findViewById(R.id.cont6);
-
-		List<String> list1 = new ArrayList<String>();
-		for (int i = 0; i < 4; i++) {
-			list1.add("热卖专区");
-		}
-		//MmDdapter ada = new MmDdapter(getActivity(), list1);
-		//List<String> list2 = new ArrayList<String>();
-		//List<String> list3 = new ArrayList<String>();
-		//List<String> list4 = new ArrayList<String>();
-		//List<String> list5 = new ArrayList<String>();
-		//List<String> list6 = new ArrayList<String>();
-
+		final ListView mListView = (ListView) view.findViewById(R.id.cont1);
+		final ListView mListView_1 = (ListView) view.findViewById(R.id.cont2);
+		mListItem = getData();
+		MyAdapter adapter = new MyAdapter(getActivity());
+		mListView.setAdapter(adapter);
+		mListView_1.setAdapter(adapter);
 		// 设置进入选购中心显示的商品界面，修复进入界面是加载全部的信息问题
-		lv_1.setVisibility(View.VISIBLE);
-		lv_2.setVisibility(View.GONE);
-		lv_3.setVisibility(View.GONE);
-		lv_4.setVisibility(View.GONE);
-		lv_5.setVisibility(View.GONE);
-		lv_6.setVisibility(View.GONE);
-
+		mListView.setVisibility(View.INVISIBLE);
+		mListView_1.setVisibility(View.INVISIBLE);
 		// getActivity使用在适配器中适用于Fragment中s
-		ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(
-				getActivity(), android.R.layout.simple_list_item_1, data);
-		lv_type.setAdapter(typeAdapter);// 为ListView绑定适配器
-
+		ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>
+		(getActivity(), android.R.layout.simple_list_item_1, data);
+		lv_type.setAdapter(typeAdapter);
 		// 分类适配器类别添加点击事件
 		lv_type.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-
 				// 对点击位置进行判断，添加事件
-
 				if (data[position].equals("热卖专区")) {
-					lv_1.setVisibility(View.VISIBLE);
-					lv_2.setVisibility(View.GONE);
-					lv_3.setVisibility(View.GONE);
-					lv_4.setVisibility(View.GONE);
-					lv_5.setVisibility(View.GONE);
-					lv_6.setVisibility(View.GONE);
-
+					mListView.setVisibility(View.VISIBLE);
+					mListView_1.setVisibility(View.GONE);
 				}
 				if (data[position].equals("进口精品")) {
-					lv_1.setVisibility(View.GONE);
-					lv_2.setVisibility(View.VISIBLE);
-					lv_3.setVisibility(View.GONE);
-					lv_4.setVisibility(View.GONE);
-					lv_5.setVisibility(View.GONE);
-					lv_6.setVisibility(View.GONE);
+					mListView.setVisibility(View.GONE);
+					mListView_1.setVisibility(View.VISIBLE);
 				}
 				if (data[position].equals("国产优选")) {
-					lv_1.setVisibility(View.GONE);
-					lv_2.setVisibility(View.GONE);
-					lv_3.setVisibility(View.VISIBLE);
-					lv_4.setVisibility(View.GONE);
-					lv_5.setVisibility(View.GONE);
-					lv_6.setVisibility(View.GONE);
+					mListView.setVisibility(View.GONE);
+					mListView_1.setVisibility(View.GONE);
 				}
 				if (data[position].equals("森林干果")) {
-					lv_1.setVisibility(View.GONE);
-					lv_2.setVisibility(View.GONE);
-					lv_3.setVisibility(View.GONE);
-					lv_4.setVisibility(View.VISIBLE);
-					lv_5.setVisibility(View.GONE);
-					lv_6.setVisibility(View.GONE);
+					mListView.setVisibility(View.VISIBLE);
+					mListView_1.setVisibility(View.GONE);
 				}
 				if (data[position].equals("礼盒整箱")) {
-					lv_1.setVisibility(View.GONE);
-					lv_2.setVisibility(View.GONE);
-					lv_3.setVisibility(View.GONE);
-					lv_4.setVisibility(View.GONE);
-					lv_5.setVisibility(View.VISIBLE);
-					lv_6.setVisibility(View.GONE);
+					mListView.setVisibility(View.GONE);
+					mListView_1.setVisibility(View.GONE);
 				}
 				if (data[position].equals("新鲜果汁")) {
-					lv_1.setVisibility(View.GONE);
-					lv_2.setVisibility(View.GONE);
-					lv_3.setVisibility(View.GONE);
-					lv_4.setVisibility(View.GONE);
-					lv_5.setVisibility(View.GONE);
-					lv_6.setVisibility(View.VISIBLE);
+					mListView.setVisibility(View.VISIBLE);
+					mListView_1.setVisibility(View.GONE);
 				}
-
+				
 			}
 		});
-		// 详细界面适配器
-		// 热卖专区界面
-		ArrayList<HashMap<String, Object>> listItem_1 = new ArrayList<HashMap<String, Object>>();
-		for (int i = 1; i < 5; i++) {
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("imageView", R.drawable.ic_launcher);
-			map.put("titleTextView", "热卖专区");
-			map.put("descTextView", "第" + i + "行");
-			listItem_1.add(map);
-		}
-		SimpleAdapter mSimpleAdapter_1 = new SimpleAdapter(getActivity(),
-				listItem_1, R.layout.list_item, new String[] { "imageView",
-						"titleTextView", "descTextView" }, new int[] {
-						R.id.imageView, R.id.titleTextView, R.id.descTextView });
-		lv_1.setAdapter(mSimpleAdapter_1);// 为ListView绑定适配器
-
-		// lv_1.setOnItemClickListener(new OnItemClickListener() {
-		//
-		// @Override public void onItemClick(AdapterView<?> parent, View view,
-		// int position, long id) { // TODO Auto-generated method stub
-		//
-		// //Toast.makeText(getActivity(), "ttttttt",
-		// Toast.LENGTH_SHORT).show();
-		//
-		// } });
-
-		// 进口精品界面
-		ArrayList<HashMap<String, Object>> listItem_2 = new ArrayList<HashMap<String, Object>>();
-		for (int i = 1; i < 5; i++) {
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("imageView", R.drawable.ic_launcher);
-			map.put("titleTextView", "进口精品");
-			map.put("descTextView", "第" + i + "行");
-			listItem_2.add(map);
-		}
-		SimpleAdapter mSimpleAdapter_2 = new SimpleAdapter(getActivity(),
-				listItem_2, R.layout.list_item, new String[] { "imageView",
-						"titleTextView", "descTextView" }, new int[] {
-						R.id.imageView, R.id.titleTextView, R.id.descTextView });
-		lv_2.setAdapter(mSimpleAdapter_2);// 为ListView绑定适配器
-
-		// 国产优选界面
-		ArrayList<HashMap<String, Object>> listItem_3 = new ArrayList<HashMap<String, Object>>();
-		for (int i = 1; i < 5; i++) {
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("imageView", R.drawable.ic_launcher);
-			map.put("titleTextView", "国产优选");
-			map.put("descTextView", "第" + i + "行");
-			listItem_3.add(map);
-		}
-		SimpleAdapter mSimpleAdapter_3 = new SimpleAdapter(getActivity(),
-				listItem_3, R.layout.list_item, new String[] { "imageView",
-						"titleTextView", "descTextView" }, new int[] {
-						R.id.imageView, R.id.titleTextView, R.id.descTextView });
-		lv_3.setAdapter(mSimpleAdapter_3);// 为ListView绑定适配器
-
-		// 森林干果界面
-		ArrayList<HashMap<String, Object>> listItem_4 = new ArrayList<HashMap<String, Object>>();
-		for (int i = 1; i < 5; i++) {
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("imageView", R.drawable.ic_launcher);
-			map.put("titleTextView", "森林干果");
-			map.put("descTextView", "第" + i + "行");
-			listItem_4.add(map);
-		}
-		SimpleAdapter mSimpleAdapter_4 = new SimpleAdapter(getActivity(),
-				listItem_4, R.layout.list_item, new String[] { "imageView",
-						"titleTextView", "descTextView" }, new int[] {
-						R.id.imageView, R.id.titleTextView, R.id.descTextView });
-		lv_4.setAdapter(mSimpleAdapter_4);// 为ListView绑定适配器
-
-		// 礼盒整箱界面
-		ArrayList<HashMap<String, Object>> listItem_5 = new ArrayList<HashMap<String, Object>>();
-		for (int i = 1; i < 5; i++) {
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("imageView", R.drawable.ic_launcher);
-			map.put("titleTextView", "礼盒整箱");
-			map.put("descTextView", "第" + i + "行");
-			listItem_5.add(map);
-		}
-		SimpleAdapter mSimpleAdapter_5 = new SimpleAdapter(getActivity(),
-				listItem_5, R.layout.list_item, new String[] { "imageView",
-						"titleTextView", "descTextView" }, new int[] {
-						R.id.imageView, R.id.titleTextView, R.id.descTextView });
-		lv_5.setAdapter(mSimpleAdapter_5);// 为ListView绑定适配器
-
-		// 新鲜果汁界面
-		ArrayList<HashMap<String, Object>> listItem_6 = new ArrayList<HashMap<String, Object>>();
-		for (int i = 1; i < 5; i++) {
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("imageView", R.drawable.ic_launcher);
-			map.put("titleTextView", "新鲜果汁");
-			map.put("descTextView", "第" + i + "行");
-			listItem_6.add(map);
-		}
-		SimpleAdapter mSimpleAdapter_6 = new SimpleAdapter(getActivity(),
-				listItem_6, R.layout.list_item, new String[] { "imageView",
-						"titleTextView", "descTextView" }, new int[] {
-						R.id.imageView, R.id.titleTextView, R.id.descTextView });
-		lv_6.setAdapter(mSimpleAdapter_6);// 为ListView绑定适配器
-
 		return view;
-
-	}
-
-	@Override
-	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-
-	}
-
-	class ViewHolder {
-		public ImageView imageView_delete;
-		public TextView textView;
-		public ImageView imageView_add;
-		public TextView textView_title;
-		public TextView textView_number;
-		public ImageView imageView;
-		public TextView textView_desc;
-	}
-
-	class MyAdapter extends BaseAdapter {
-
-		private LayoutInflater mInflater;
-
-		public MyAdapter(Context context) {
-			this.mInflater = LayoutInflater.from(context);
+		}
+		
+		private List<Map<String, Object>> getData() {
+			List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+			for (int i = 0; i < 10; i++) {
+				HashMap<String, Object> map = new HashMap<String, Object>();
+				map.put("titleTextView", "标题"+i);
+				map.put("descTextView", "单价"+i);
+				map.put("imageView_delete", R.drawable.delete);
+				map.put("list_buy_number", i);
+				map.put("imageView_add", R.drawable.add);
+				list.add(map);
+			}
+			return list;
+		}
+	
+		public final class ViewHolder {
+			TextView titleTextView;
+			TextView descTextView;
+			ImageView imageView_delete;
+			TextView list_buy_number;
+			ImageView imageView_add;
 		}
 
-		@Override
-		public int getCount() {
-			return 4;
-		}
+		public class MyAdapter extends BaseAdapter {
 
-		@Override
-		public Object getItem(int position) {
-			return null;
-		}
+			private LayoutInflater mInflater;
 
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
+			public MyAdapter(Context context) {
 
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-
-			ViewHolder holder = null;
-			if (convertView == null) {
-				holder = new ViewHolder();
-				convertView = mInflater.inflate(R.layout.list_item, null);
-				// View vi = super.getView( position,convertView,parent);
-				holder.imageView = (ImageView) convertView
-						.findViewById(R.id.imageView);
-				holder.textView_title = (TextView) convertView
-						.findViewById(R.id.titleTextView);
-				holder.textView_desc = (TextView) convertView
-						.findViewById(R.id.descTextView);
-				holder.imageView_delete = (ImageView) convertView
-						.findViewById(R.id.imageView_delete);
-				holder.textView_number = (TextView) convertView
-						.findViewById(R.id.list_buy_number);
-				holder.imageView_add = (ImageView) convertView
-						.findViewById(R.id.imageView_add);
-
-				holder.imageView_add
-						.setOnClickListener(new View.OnClickListener() {
-
-							@Override
-							public void onClick(View v) {
-
-								AlertDialog.Builder builder = new AlertDialog.Builder(
-										getActivity());
-								builder.setMessage("dialog");
-								builder.setTitle("title");
-								builder.create();
-								builder.show();
-							}
-						});
-				convertView.setTag(holder);
-			} else {
-				convertView.getTag();
+				this.mInflater = LayoutInflater.from(context);
 			}
 
-			return convertView;
-		}
+			@Override
+			public int getCount() {
+				// TODO Auto-generated method stub
+				return mListItem.size();
+			}
 
+			@Override
+			public Object getItem(int position) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			@Override
+			public long getItemId(int position) {
+				// TODO Auto-generated method stub
+				return 0;
+			}			
+		/*	public Bitmap getImageByURL(String url) {
+				  try {
+				   URL imgURL = new URL(url);
+				   URLConnection conn = imgURL.openConnection();
+				   conn.connect();
+				   InputStream is = conn.getInputStream();
+				   BufferedInputStream bis = new BufferedInputStream(is);
+				   Bitmap bm = BitmapFactory.decodeStream(bis);
+				   bis.close();
+				   is.close();
+				   if (bm == null) {
+				    Log.e("MO", "httperror");
+				   }
+				   return bm;
+				  } catch (Exception e) {
+				   return null;
+				  }
+				 }
+*/
+			@SuppressLint("InflateParams") @Override
+			public View getView(int position, View convertView, ViewGroup parent) {
+				// TODO Auto-generated method stub
+				Map<String, Object> item = new HashMap<String, Object>();
+			       item = getData().get(position);//获得的是所有 数据
+			
+
+				ViewHolder holder = null;
+			   
+				if (convertView == null) {
+					holder = new ViewHolder();
+					convertView = mInflater.inflate(R.layout.list_item, null);
+					holder.titleTextView = (TextView) convertView
+							.findViewById(R.id.titleTextView);
+					holder.titleTextView.setText(item.get("titleTextView").toString());					
+					holder.descTextView = (TextView) convertView
+							.findViewById(R.id.descTextView);
+					holder.descTextView.setText(item.get("descTextView").toString());
+					holder.imageView_delete = (ImageView) convertView
+							.findViewById(R.id.imageView_delete);
+					holder.list_buy_number = (TextView) convertView
+							.findViewById(R.id.list_buy_number);
+					holder.imageView_add = (ImageView) convertView
+							.findViewById(R.id.imageView_add);
+					convertView.setTag(holder);
+				} else {
+					holder = (ViewHolder) convertView.getTag();
+				}
+				//点击添加和减少商品的图标
+				
+				holder.imageView_delete.setOnClickListener(new View.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						Toast.makeText(getActivity(), "delete user", Toast.LENGTH_SHORT).show();
+					}
+
+				});
+				holder.imageView_add.setOnClickListener(new View.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						Toast.makeText(getActivity(), "add user", Toast.LENGTH_SHORT).show();
+					}
+
+				});
+				return convertView;			
+			}
 	}
+		}
+	
 
-}
+

@@ -29,33 +29,12 @@
             android:id="@+id/cont1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" 
-            ></ListView>
-        <ListView
+            ></ListView>   
+            <ListView
             android:id="@+id/cont2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" 
-            ></ListView>
-        <ListView
-            android:id="@+id/cont3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-            ></ListView>
-        <ListView
-            android:id="@+id/cont4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-            ></ListView>
-        <ListView
-            android:id="@+id/cont5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-            ></ListView>
-        <ListView
-            android:id="@+id/cont6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-            ></ListView>
-  
+            ></ListView>      
     </LinearLayout>
  
 </RelativeLayout>

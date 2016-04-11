@@ -1,26 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    <ImageView 
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher"
-        
-        />
-    <TextView android:id="@+id/titleTextView"  
-        android:layout_width="fill_parent"  
-        android:layout_height="wrap_content"  
-        android:layout_toRightOf="@id/imageView"      
-        android:textSize="22px"  
-    />  
-    <TextView android:id="@+id/descTextView"  
-        android:layout_width="fill_parent"  
-        android:layout_height="wrap_content"  
-        android:layout_toRightOf="@id/imageView"  
-        android:layout_below="@id/titleTextView" 
-        android:textSize="12px"  
-    />  
+        android:src="@drawable/ic_launcher" />
+
+    <LinearLayout
+        android:id="@+id/buy_number"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imageView"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12dp" />
+
+      
+
+        <LinearLayout
+            android:id="@+id/buy_number_image"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right|bottom"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/descTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp" />
+
+            <ImageView
+                android:id="@+id/imageView_delete"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/delete" />
+
+            <TextView
+                android:id="@+id/list_buy_number"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:text="0"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/imageView_add"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:focusable="false"
+                android:src="@drawable/add" />
+        </LinearLayout>
+    </LinearLayout>
+
 
 </RelativeLayout>

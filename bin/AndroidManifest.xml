@@ -27,6 +27,7 @@
         <activity android:name="com.example.weishop.tapThree" />
         <activity android:name="com.example.weishop.tapFour" />
         <activity android:name="com.example.weishop.Login"></activity>
+        <activity android:name="com.example.util.MyListView4"></activity>
     </application>
 
 </manifest>

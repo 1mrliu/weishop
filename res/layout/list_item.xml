@@ -21,13 +21,12 @@
             android:id="@+id/titleTextView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Title"
+            android:text="Title_info"
             android:textSize="12dp" />
        
-
         <LinearLayout
             android:id="@+id/buy_number_image"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right|bottom"
             android:orientation="horizontal" >
@@ -36,8 +35,8 @@
                 android:id="@+id/descTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingRight="100dp"
-                android:text="Descr"
+                android:paddingRight="150dp"
+                android:text="Description"
                 android:textSize="12dp" />
 
             <ImageView

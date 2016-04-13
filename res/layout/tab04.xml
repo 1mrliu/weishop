@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
     <LinearLayout
         android:id="@+id/info_person_photo"
-        android:layout_height="60dp"
         android:layout_width="fill_parent"
+        android:layout_height="60dp"
         android:background="@drawable/personal_info_back"
-        android:orientation="horizontal"
-         >
+        android:orientation="horizontal" >
 
         <com.example.util.CircleImageView
             android:id="@+id/round_picture"
@@ -17,6 +17,7 @@
             android:layout_height="60dp"
             android:layout_marginLeft="30dp"
             android:src="@drawable/person" />
+
         <TextView
             android:id="@+id/user_name"
             android:layout_width="wrap_content"
@@ -25,9 +26,8 @@
             android:text="诺木人"
             android:textColor="#000000"
             android:textSize="20sp" />
-
     </LinearLayout>
-    
+
     <LinearLayout
         android:id="@+id/zhuangtai"
         android:layout_width="fill_parent"
@@ -39,27 +39,27 @@
             android:id="@+id/jifen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:layout_marginTop="10dp"
             android:text="积分" />
 
         <TextView
             android:id="@+id/youhuiquan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:gravity="center"
-             android:layout_marginTop="10dp"
             android:text="优惠券" />
 
         <TextView
             android:id="@+id/xinxi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:gravity="center"
-             android:layout_marginTop="10dp"
             android:text="信息" />
     </LinearLayout>
 
@@ -75,26 +75,37 @@
 
             <ImageView
                 android:id="@+id/image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher" />
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:paddingLeft="8dp"
+                android:src="@drawable/order_form" />
 
-            <TextView
-                android:id="@+id/dingdan"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="我的订单" />
+                android:gravity="right"
+                android:padding="10dp" >
 
-            <ImageView
-                android:id="@+id/image_personal_icon"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/dingdan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的订单" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/arr_right" />
+                android:gravity="right"
+                android:padding="10dp" >
+
+                <ImageView
+                    android:id="@+id/image_personal_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|bottom"
+                    android:src="@drawable/arr_right" />
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -104,36 +115,45 @@
 
             <ImageView
                 android:id="@+id/image_"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher" />
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:paddingLeft="8dp"
+                android:src="@drawable/keep" />
 
-            <TextView
-                android:id="@+id/shoucang"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="我的收藏" />
+                android:gravity="right"
+                android:padding="10dp" >
 
-            <ImageView
-                android:id="@+id/image_per"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/shoucang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的收藏" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                
-                android:src="@drawable/arr_right" />
+                android:gravity="right"
+                android:padding="10dp" >
+
+                <ImageView
+                    android:id="@+id/image_per"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|bottom"
+                    android:src="@drawable/arr_right" />
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 
     <ListView
         android:id="@+id/personal_center"
-  
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
-        android:fadingEdge="none">
+        android:layout_height="wrap_content"
+        android:fadingEdge="none" >
     </ListView>
 
 </LinearLayout>

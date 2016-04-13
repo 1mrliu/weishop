@@ -21,6 +21,8 @@ import android.widget.TextView;
 
 public class tapFour extends Fragment {
 	public String[] personal_data={"我的邮箱","我的积分","抽奖","登录","注册"};
+	public  int[]  image_icon={R.drawable.mail,R.drawable.integral,
+			R.drawable.lottery,R.drawable.ic_launcher,R.drawable.ic_launcher};
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
@@ -43,7 +45,7 @@ public class tapFour extends Fragment {
 				for(int i=0;i<5;i++)
 				{
 					HashMap<String,Object> map=new HashMap<String,Object>();
-					map.put("image_personal", R.drawable.ic_launcher);
+					map.put("image_personal", image_icon[i]);
 					map.put("function_info",personal_data[i]);
 					map.put("image_personal_icon", R.drawable.arr_right);
 					listItem.add(map);

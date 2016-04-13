@@ -57,29 +57,33 @@ public class tapTwo extends Fragment {
 	private Handler handler = new Handler() {
 
 	
+		@SuppressLint("HandlerLeak") 
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 1:
+				
 				String response = (String) msg.obj;
 				parseJSONWithJSONObject(response);
-				//Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
 				MyAdapter adapter = new MyAdapter(getActivity());
 				
 				mListView.setAdapter(adapter);
 				mListView_1.setAdapter(adapter);
+				
 				// 设置进入选购中心显示的商品界面，修复进入界面是加载全部的信息问题
 				mListView.setVisibility(View.INVISIBLE);
 				mListView_1.setVisibility(View.INVISIBLE);
+				
 				// getActivity使用在适配器中适用于Fragment中
 				ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>
 				(getActivity(), android.R.layout.simple_list_item_1, data);
 				lv_type.setAdapter(typeAdapter);
+				
 				// 分类适配器类别添加点击事件
 				lv_type.setOnItemClickListener(new OnItemClickListener() {
-
 					@Override
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
+						
 						// 对点击位置进行判断，添加事件
 						if (data[position].equals("热卖专区")) {
 							mListView.setVisibility(View.VISIBLE);
@@ -104,9 +108,7 @@ public class tapTwo extends Fragment {
 						if (data[position].equals("新鲜果汁")) {
 							mListView.setVisibility(View.VISIBLE);
 							mListView_1.setVisibility(View.GONE);
-						}
-						
-						
+						}		
 					}
 				});
 				break;
@@ -125,8 +127,7 @@ public class tapTwo extends Fragment {
 					HttpResponse httpResponse = httpClient.execute(httpGet);
 					if (httpResponse.getStatusLine().getStatusCode() == 200) {
 						HttpEntity entity = httpResponse.getEntity();
-						String response = EntityUtils.toString(entity, "utf-8");
-						//parseJSONWithJSONObject(response);						
+						String response = EntityUtils.toString(entity, "utf-8");						
 						Message message = new Message();
 						message.what = 1;
 						message.obj = response.toString();
@@ -140,49 +141,22 @@ public class tapTwo extends Fragment {
 	}
 	private void parseJSONWithJSONObject(String jsonData) {
 		try {
-			//String jsonData="[{'id':'5','version':'5.5','name':'Angry Birds'},{'id':'6','version':'7.0','name':'Angry Dog'}]";
-			//String jsonData="http://www.xxxjqt.cn/amallphone/index.php/Home/Mobile/";
 			JSONArray jsonArray = new JSONArray(jsonData);
 			Map<String, Object> map ;
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject jsonObject = jsonArray.getJSONObject(i);
 				 map = new HashMap<String, Object>();
-				/*String id = jsonObject.getString("id");
-				String name = jsonObject.getString("name");
-				String version = jsonObject.getString("version");*/
-				
 				String id = jsonObject.getString("gid");
 				String name = jsonObject.getString("price");
-				String version = jsonObject.getString("original_price");
+				//String version = jsonObject.getString("original_price");
 				map.put("titleTextView", id);
-				map.put("descTextView", name);
-				
+				map.put("descTextView", name);				
 				mListItem.add(map);
-				Log.d("MainActivity", "id is " + id);
-				Log.d("MainActivity", "name is " + name);
-			    Log.d("MainActivity", "version is " + version);
 			}
-			Toast.makeText(getActivity(), mListItem.size(), Toast.LENGTH_SHORT).show();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-		
-		/*private List<Map<String, Object>> getData() {
-			//sendRequestWithHttpClient();
-			List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-			for (int i = 0; i < 10; i++) {
-				HashMap<String, Object> map = new HashMap<String, Object>();
-				map.put("titleTextView", "标题"+i);
-				map.put("descTextView", "单价"+i);
-				map.put("imageView_delete", R.drawable.delete);
-				map.put("list_buy_number", i);
-				map.put("imageView_add", R.drawable.add);
-				list.add(map);
-			}
-			return list;
-		}*/
-	
 		public final class ViewHolder {
 			TextView titleTextView;
 			TextView descTextView;
@@ -216,7 +190,6 @@ public class tapTwo extends Fragment {
 			}			
 			@SuppressLint("InflateParams") @Override
 			public View getView(int position, View convertView, ViewGroup parent) {
-				// TODO Auto-generated method stub
 				Map<String, Object> item = new HashMap<String, Object>();
 			    item = mListItem.get(position);//获得所有数据
 				ViewHolder holder = null;
@@ -231,8 +204,10 @@ public class tapTwo extends Fragment {
 					
 					holder.imageView_delete = (ImageView) convertView
 							.findViewById(R.id.imageView_delete);
+					
 					holder.list_buy_number = (TextView) convertView
 							.findViewById(R.id.list_buy_number);
+					
 					holder.imageView_add = (ImageView) convertView
 							.findViewById(R.id.imageView_add);
 					convertView.setTag(holder);
@@ -250,6 +225,7 @@ public class tapTwo extends Fragment {
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 						Toast.makeText(getActivity(), "delete user", Toast.LENGTH_SHORT).show();
+						
 					}
 
 				});

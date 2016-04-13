@@ -24,7 +24,7 @@
         <ImageView
             android:id="@+id/top_left_image"
             android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_height="20dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:src="@drawable/rt_bk" />

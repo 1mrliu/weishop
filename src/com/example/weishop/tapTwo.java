@@ -1,19 +1,32 @@
 package com.example.weishop;
 
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import android.annotation.SuppressLint;
+import android.app.LauncherActivity.ListItem;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -34,15 +47,18 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.example.util.MyAdapter;
+import com.example.weishop.R.integer;
+
 public class tapTwo extends Fragment {
 
 	public String[] data = { "热卖专区", "进口精品", "国产优选", "森林干果", "礼盒整箱", "新鲜果汁" };
 	public List<Map<String, Object>> mListItem = new ArrayList<Map<String, Object>>();
-	ListView mListView, mListView_1, lv_type;
+	ListView mListView, lv_type;
 	/*
 	 * 获取商品当前数量并改变数字的大小
 	 */
-	EditText count;
+	TextView count;
 	public static final int SHOW_RESPONSE = 0;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,8 +73,7 @@ public class tapTwo extends Fragment {
 
 		// 商品详细情况展示
 		mListView = (ListView) view.findViewById(R.id.cont1);
-		mListView_1 = (ListView) view.findViewById(R.id.cont2);
-		count = (EditText) view.findViewById(R.id.list_buy_number);
+		count = (TextView) view.findViewById(R.id.list_buy_number);
 		return view;
 	}
 
@@ -75,11 +90,11 @@ public class tapTwo extends Fragment {
 				MyAdapter adapter = new MyAdapter(getActivity());
 
 				mListView.setAdapter(adapter);
-				mListView_1.setAdapter(adapter);
+				
 
 				// 设置进入选购中心显示的商品界面，修复进入界面是加载全部的信息问题
 				mListView.setVisibility(View.INVISIBLE);
-				mListView_1.setVisibility(View.INVISIBLE);
+				
 
 				// getActivity使用在适配器中适用于Fragment中
 				ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(
@@ -96,27 +111,27 @@ public class tapTwo extends Fragment {
 						// 对点击位置进行判断，添加事件
 						if (data[position].equals("热卖专区")) {
 							mListView.setVisibility(View.VISIBLE);
-							mListView_1.setVisibility(View.GONE);
+							
 						}
 						if (data[position].equals("进口精品")) {
 							mListView.setVisibility(View.GONE);
-							mListView_1.setVisibility(View.VISIBLE);
+							
 						}
 						if (data[position].equals("国产优选")) {
 							mListView.setVisibility(View.GONE);
-							mListView_1.setVisibility(View.GONE);
+							
 						}
 						if (data[position].equals("森林干果")) {
 							mListView.setVisibility(View.VISIBLE);
-							mListView_1.setVisibility(View.GONE);
+							
 						}
 						if (data[position].equals("礼盒整箱")) {
 							mListView.setVisibility(View.GONE);
-							mListView_1.setVisibility(View.GONE);
+							
 						}
 						if (data[position].equals("新鲜果汁")) {
 							mListView.setVisibility(View.VISIBLE);
-							mListView_1.setVisibility(View.GONE);
+							
 						}
 					}
 				});
@@ -169,104 +184,24 @@ public class tapTwo extends Fragment {
 		}
 	}
 
-	// ListView适配器进行设置，加载数据，使用ViewHolder进行优化
-	public final class ViewHolder {
-		TextView titleTextView;
-		TextView descTextView;
-		ImageView imageView_delete;
-		TextView list_buy_number;
-		ImageView imageView_add;
-	}
-
-	public class MyAdapter extends BaseAdapter {
-
-		private LayoutInflater mInflater;
-
-		public MyAdapter(Context context) {
-			this.mInflater = LayoutInflater.from(context);
-		}
-
-		@Override
-		public int getCount() {
-			return mListItem.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return mListItem.get(position);
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return 0;
-		}
-
-		@SuppressLint("InflateParams") @Override
-			public View getView(int position, View convertView, ViewGroup parent) {
-				 Map<String, Object> item = new HashMap<String, Object>();
-			    item = mListItem.get(position);//获得所有数据
-				ViewHolder holder = null;
-				if (convertView == null) {
-					holder = new ViewHolder();
-					convertView = mInflater.inflate(R.layout.list_item, null);
-					holder.titleTextView = (TextView) convertView
-							.findViewById(R.id.titleTextView);
-										
-					holder.descTextView = (TextView) convertView
-							.findViewById(R.id.descTextView);
-					
-					holder.imageView_delete = (ImageView) convertView
-							.findViewById(R.id.imageView_delete);
-					
-					holder.list_buy_number = (TextView) convertView
-							.findViewById(R.id.list_buy_number);
-					
-					holder.imageView_add = (ImageView) convertView
-							.findViewById(R.id.imageView_add);
-					convertView.setTag(holder);
-				} else {
-					holder = (ViewHolder) convertView.getTag();
-				}
-				holder.titleTextView.setText(item.get("titleTextView").toString());
-				holder.descTextView.setText(item.get("descTextView").toString());
-				
-				//点击添加和减少商品的图标
-				  		        
-				
-				holder.imageView_delete.setOnClickListener(new View.OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						// TODO Auto-generated method stub
-						Toast.makeText(getActivity(), "reduce number", Toast.LENGTH_SHORT).show();  
-						
-					}
-
-				});
-				holder.imageView_add.setOnClickListener(new View.OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						// TODO Auto-generated method stub						
-						Toast.makeText(getActivity(), "add  number", Toast.LENGTH_SHORT).show();
-					    int location=mListView.getCheckedItemPosition();
-					    String l=String.valueOf(location+2);
-						Log.d("position", l);
-						for(int i=0;i<mListView.getChildCount();i++){
-							//LinearLayout layout=(LinearLayout)mListView.getChildAt(i);
-							
-						
-							RelativeLayout layout=(RelativeLayout)mListView.getChildAt(location+1);
-							// 从layout中获得控件,根据其id
-							TextView et = (TextView) layout.findViewById(R.id.list_buy_number);
-						    et.setText(et.getText().toString()+1);
-						
-							}
-						
-						//count.setText(10);
-					}
-				});
-				return convertView;			
+	// 图片加载
+	public Bitmap getImageByURL(String url) {
+		try {
+			URL imgURL = new URL(url);
+			URLConnection conn = imgURL.openConnection();
+			conn.connect();
+			InputStream is = conn.getInputStream();
+			BufferedInputStream bis = new BufferedInputStream(is);
+			Bitmap bm = BitmapFactory.decodeStream(bis);
+			bis.close();
+			is.close();
+			if (bm == null) {
+				Log.e("MO", "httperror");
 			}
+			return bm;
+		} catch (Exception e) {
+			return null;
+		}
 	}
+	
 }

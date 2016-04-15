@@ -1116,7 +1116,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f050073;
+        public static final int action_settings=0x7f050072;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
@@ -1127,11 +1127,10 @@ containing a value of this type.
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
         public static final int cont1=0x7f050066;
-        public static final int cont2=0x7f050067;
         public static final int default_activity_button=0x7f050028;
         public static final int descTextView=0x7f050047;
         public static final int dialog=0x7f05000e;
-        public static final int dingdan=0x7f05006e;
+        public static final int dingdan=0x7f05006d;
         public static final int disableHome=0x7f050008;
         public static final int dropdown=0x7f05000f;
         public static final int editText1=0x7f050055;
@@ -1160,12 +1159,12 @@ containing a value of this type.
         public static final int imageView1=0x7f05005d;
         public static final int imageView_add=0x7f05004b;
         public static final int imageView_delete=0x7f050049;
-        public static final int image_=0x7f05006f;
-        public static final int image_per=0x7f050071;
+        public static final int image_=0x7f05006e;
+        public static final int image_per=0x7f050070;
         public static final int image_personal=0x7f05004c;
         public static final int image_personal_icon=0x7f050050;
-        public static final int info_person_photo=0x7f050068;
-        public static final int jifen=0x7f05006b;
+        public static final int info_person_photo=0x7f050067;
+        public static final int jifen=0x7f05006a;
         public static final int listMode=0x7f050001;
         public static final int list_buy_number=0x7f05004a;
         public static final int list_item=0x7f050029;
@@ -1178,12 +1177,12 @@ containing a value of this type.
         public static final int notice_image=0x7f050060;
         public static final int notice_info=0x7f050061;
         public static final int oersonal_info=0x7f05004d;
-        public static final int personal_center=0x7f050072;
+        public static final int personal_center=0x7f050071;
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
         public static final int radio=0x7f05002f;
         public static final int rl_score=0x7f05004f;
-        public static final int round_picture=0x7f050069;
+        public static final int round_picture=0x7f050068;
         public static final int sale=0x7f050065;
         public static final int sale_type=0x7f050051;
         public static final int search_badge=0x7f050032;
@@ -1199,7 +1198,7 @@ containing a value of this type.
         public static final int shop=0x7f050062;
         public static final int shop_info=0x7f050063;
         public static final int shortcut=0x7f05002e;
-        public static final int shoucang=0x7f050070;
+        public static final int shoucang=0x7f05006f;
         public static final int showCustom=0x7f050007;
         public static final int showHome=0x7f050004;
         public static final int showTitle=0x7f050006;
@@ -1218,9 +1217,9 @@ containing a value of this type.
         public static final int user_code=0x7f050056;
         public static final int user_name=0x7f050054;
         public static final int withText=0x7f05000c;
-        public static final int xinxi=0x7f05006d;
-        public static final int youhuiquan=0x7f05006c;
-        public static final int zhuangtai=0x7f05006a;
+        public static final int xinxi=0x7f05006c;
+        public static final int youhuiquan=0x7f05006b;
+        public static final int zhuangtai=0x7f050069;
     }
     public static final class integer {
         /**  The maximum number of action buttons that should be permitted within

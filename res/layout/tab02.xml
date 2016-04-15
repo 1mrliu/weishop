@@ -29,12 +29,7 @@
             android:id="@+id/cont1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" 
-            ></ListView>   
-            <ListView
-            android:id="@+id/cont2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-            ></ListView>      
+            ></ListView>        
     </LinearLayout>
  
 </RelativeLayout>

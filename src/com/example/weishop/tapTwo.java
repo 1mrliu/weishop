@@ -46,7 +46,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import com.example.util.MyAdapter;
 import com.example.weishop.R.integer;
 
@@ -54,7 +53,7 @@ public class tapTwo extends Fragment {
 
 	public String[] data = { "热卖专区", "进口精品", "国产优选", "森林干果", "礼盒整箱", "新鲜果汁" };
 	public List<Map<String, Object>> mListItem = new ArrayList<Map<String, Object>>();
-	ListView mListView, lv_type;
+	ListView mListView, lv_type, listView1, listView2, listView3,listView4,listView5,listView6;
 	/*
 	 * 获取商品当前数量并改变数字的大小
 	 */
@@ -72,8 +71,123 @@ public class tapTwo extends Fragment {
 		lv_type.setAdapter(lv_type_adapter);
 
 		// 商品详细情况展示
-		mListView = (ListView) view.findViewById(R.id.cont1);
-		count = (TextView) view.findViewById(R.id.list_buy_number);
+		// mListView = (ListView) view.findViewById(R.id.cont1);
+
+		listView1 = (ListView) view.findViewById(R.id.cont1);
+		listView2 = (ListView) view.findViewById(R.id.cont2);
+		listView3 = (ListView) view.findViewById(R.id.cont3);
+		listView4 = (ListView) view.findViewById(R.id.cont4);
+		listView5 = (ListView) view.findViewById(R.id.cont5);
+		listView6 = (ListView) view.findViewById(R.id.cont6);
+		// 生成动态数组
+		ArrayList<HashMap<String, Object>> listitem1 = new ArrayList<HashMap<String, Object>>();
+		for (int i = 0; i < 10; i++) {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("itemimage", R.drawable.fruit); // 图像资源的ID
+			map.put("itemtitle", "热卖专区" + i);
+			map.put("price", "￥5");
+			map.put("number", 0);
+			listitem1.add(map);
+		}
+		// 调用MyAdapter方法，用来放置item中的元素
+		MyAdapter listItemAdapter1 = new MyAdapter(getActivity(), listitem1,
+				R.layout.list_item, new String[] { "itemimage", "itemtitle",
+						"price", "btadd", "btcut", "number" }, new int[] {
+						R.id.itemimage, R.id.itemtitle, R.id.price,
+						R.id.itemadd, R.id.itemcut, R.id.number });
+		listView1.setAdapter(listItemAdapter1);
+
+		// 生成动态数组
+		ArrayList<HashMap<String, Object>> listitem2 = new ArrayList<HashMap<String, Object>>();
+		for (int i = 0; i < 10; i++) {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("itemimage", R.drawable.fruit); // 图像资源的ID
+			map.put("itemtitle", "进口精品" + i);
+			map.put("price", "￥5");
+			map.put("number", 0);
+			listitem2.add(map);
+		}
+		// 调用MyAdapter方法，用来放置item中的元素
+		MyAdapter listItemAdapter2 = new MyAdapter(getActivity(), listitem2,
+				R.layout.list_item, new String[] { "itemimage", "itemtitle",
+						"price", "btadd", "btcut", "number" }, new int[] {
+						R.id.itemimage, R.id.itemtitle, R.id.price,
+						R.id.itemadd, R.id.itemcut, R.id.number });
+		listView2.setAdapter(listItemAdapter2);
+
+		// 生成动态数组
+		ArrayList<HashMap<String, Object>> listitem3 = new ArrayList<HashMap<String, Object>>();
+		for (int i = 0; i < 10; i++) {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("itemimage", R.drawable.fruit); // 图像资源的ID
+			map.put("itemtitle", "国产优选" + i);
+			map.put("price", "￥5");
+			map.put("number", 0);
+			listitem3.add(map);
+		}
+		// 调用MyAdapter方法，用来放置item中的元素
+		MyAdapter listItemAdapter3 = new MyAdapter(getActivity(), listitem3,
+				R.layout.list_item, new String[] { "itemimage", "itemtitle",
+						"price", "btadd", "btcut", "number" }, new int[] {
+						R.id.itemimage, R.id.itemtitle, R.id.price,
+						R.id.itemadd, R.id.itemcut, R.id.number });
+		listView3.setAdapter(listItemAdapter3);
+		
+		// 生成动态数组
+				ArrayList<HashMap<String, Object>> listitem4 = new ArrayList<HashMap<String, Object>>();
+				for (int i = 0; i < 10; i++) {
+					HashMap<String, Object> map = new HashMap<String, Object>();
+					map.put("itemimage", R.drawable.fruit); // 图像资源的ID
+					map.put("itemtitle", "森林干果" + i);
+					map.put("price", "￥5");
+					map.put("number", 0);
+					listitem4.add(map);
+				}
+				// 调用MyAdapter方法，用来放置item中的元素
+				MyAdapter listItemAdapter4 = new MyAdapter(getActivity(), listitem4,
+						R.layout.list_item, new String[] { "itemimage", "itemtitle",
+								"price", "btadd", "btcut", "number" }, new int[] {
+								R.id.itemimage, R.id.itemtitle, R.id.price,
+								R.id.itemadd, R.id.itemcut, R.id.number });
+				listView4.setAdapter(listItemAdapter4);
+				
+				// 生成动态数组
+				ArrayList<HashMap<String, Object>> listitem5 = new ArrayList<HashMap<String, Object>>();
+				for (int i = 0; i < 10; i++) {
+					HashMap<String, Object> map = new HashMap<String, Object>();
+					map.put("itemimage", R.drawable.fruit); // 图像资源的ID
+					map.put("itemtitle", "礼盒整箱" + i);
+					map.put("price", "￥5");
+					map.put("number", 0);
+					listitem5.add(map);
+				}
+				// 调用MyAdapter方法，用来放置item中的元素
+				MyAdapter listItemAdapter5 = new MyAdapter(getActivity(), listitem5,
+						R.layout.list_item, new String[] { "itemimage", "itemtitle",
+								"price", "btadd", "btcut", "number" }, new int[] {
+								R.id.itemimage, R.id.itemtitle, R.id.price,
+								R.id.itemadd, R.id.itemcut, R.id.number });
+				listView5.setAdapter(listItemAdapter5);
+				
+				
+				// 生成动态数组
+				ArrayList<HashMap<String, Object>> listitem6 = new ArrayList<HashMap<String, Object>>();
+				for (int i = 0; i < 10; i++) {
+					HashMap<String, Object> map = new HashMap<String, Object>();
+					map.put("itemimage", R.drawable.fruit); // 图像资源的ID
+					map.put("itemtitle", "新鲜果汁" + i);
+					map.put("price", "￥5");
+					map.put("number", 0);
+					listitem6.add(map);
+				}
+				// 调用MyAdapter方法，用来放置item中的元素
+				MyAdapter listItemAdapter6 = new MyAdapter(getActivity(), listitem6,
+						R.layout.list_item, new String[] { "itemimage", "itemtitle",
+								"price", "btadd", "btcut", "number" }, new int[] {
+								R.id.itemimage, R.id.itemtitle, R.id.price,
+								R.id.itemadd, R.id.itemcut, R.id.number });
+				listView6.setAdapter(listItemAdapter3);
+
 		return view;
 	}
 
@@ -87,14 +201,10 @@ public class tapTwo extends Fragment {
 
 				String response = (String) msg.obj;
 				parseJSONWithJSONObject(response);
-				MyAdapter adapter = new MyAdapter(getActivity());
+				// MyAdapter adapter = new MyAdapter(
+				// context,applist,resources,from,to);
 
-				mListView.setAdapter(adapter);
-				
-
-				// 设置进入选购中心显示的商品界面，修复进入界面是加载全部的信息问题
-				mListView.setVisibility(View.INVISIBLE);
-				
+				// mListView.setAdapter(adapter);
 
 				// getActivity使用在适配器中适用于Fragment中
 				ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(
@@ -110,28 +220,53 @@ public class tapTwo extends Fragment {
 
 						// 对点击位置进行判断，添加事件
 						if (data[position].equals("热卖专区")) {
-							mListView.setVisibility(View.VISIBLE);
+							listView1.setVisibility(View.VISIBLE);
+							listView2.setVisibility(View.GONE);
+							listView3.setVisibility(View.GONE);
+							listView4.setVisibility(View.GONE);
+							listView5.setVisibility(View.GONE);
+							listView6.setVisibility(View.GONE);
 							
 						}
 						if (data[position].equals("进口精品")) {
-							mListView.setVisibility(View.GONE);
-							
+							listView1.setVisibility(View.GONE);
+							listView2.setVisibility(View.VISIBLE);
+							listView3.setVisibility(View.GONE);
+							listView4.setVisibility(View.GONE);
+							listView5.setVisibility(View.GONE);
+							listView6.setVisibility(View.GONE);
 						}
 						if (data[position].equals("国产优选")) {
-							mListView.setVisibility(View.GONE);
-							
+							listView1.setVisibility(View.GONE);
+							listView2.setVisibility(View.GONE);
+							listView3.setVisibility(View.VISIBLE);
+							listView4.setVisibility(View.GONE);
+							listView5.setVisibility(View.GONE);
+							listView6.setVisibility(View.GONE);
 						}
 						if (data[position].equals("森林干果")) {
-							mListView.setVisibility(View.VISIBLE);
-							
+							listView1.setVisibility(View.GONE);
+							listView2.setVisibility(View.GONE);
+							listView3.setVisibility(View.GONE);
+							listView4.setVisibility(View.VISIBLE);
+							listView5.setVisibility(View.GONE);
+							listView6.setVisibility(View.GONE);
 						}
 						if (data[position].equals("礼盒整箱")) {
-							mListView.setVisibility(View.GONE);
-							
+							listView1.setVisibility(View.GONE);
+							listView2.setVisibility(View.GONE);
+							listView3.setVisibility(View.GONE);
+							listView4.setVisibility(View.GONE);
+							listView5.setVisibility(View.VISIBLE);
+							listView6.setVisibility(View.GONE);
 						}
 						if (data[position].equals("新鲜果汁")) {
-							mListView.setVisibility(View.VISIBLE);
-							
+							listView1.setVisibility(View.GONE);
+							listView2.setVisibility(View.GONE);
+							listView3.setVisibility(View.GONE);
+							listView4.setVisibility(View.GONE);
+							listView5.setVisibility(View.GONE);
+							listView6.setVisibility(View.VISIBLE);
 						}
 					}
 				});
@@ -175,8 +310,8 @@ public class tapTwo extends Fragment {
 				String id = jsonObject.getString("gid");
 				String name = jsonObject.getString("price");
 				// String version = jsonObject.getString("original_price");
-				map.put("titleTextView", id);
-				map.put("descTextView", name);
+				map.put("itemtitle", id);
+				map.put("price", name);
 				mListItem.add(map);
 			}
 		} catch (Exception e) {
@@ -203,5 +338,5 @@ public class tapTwo extends Fragment {
 			return null;
 		}
 	}
-	
+
 }

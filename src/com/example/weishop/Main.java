@@ -11,7 +11,11 @@ import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import com.example.data.MyDatabaseHelper;
+
 public class Main extends FragmentActivity implements OnClickListener {
+	MyDatabaseHelper databasehelper  = new MyDatabaseHelper(this, "weishop.db", null, 2);
+
 
 	private LinearLayout mTabHome;
 	private LinearLayout mTabSelect;
@@ -103,8 +107,10 @@ public class Main extends FragmentActivity implements OnClickListener {
 			if (mTab03 == null) {
 				mTab03 = new tapThree();
 				transaction.add(R.id.id_content, mTab03);
+				
 			} else {
 				transaction.show(mTab03);
+				
 			}
 			mImgCart.setImageResource(R.drawable.cart_pressed);
 			break;
@@ -151,6 +157,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 			break;
 		case R.id.id_tab_cart:
 			setSelect(2);
+			databasehelper.getWritableDatabase();
 			break;
 		case R.id.id_tab_setting:
 			setSelect(3);

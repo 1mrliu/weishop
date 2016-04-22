@@ -186,7 +186,7 @@ public class tapTwo extends Fragment {
 								"price", "btadd", "btcut", "number" }, new int[] {
 								R.id.itemimage, R.id.itemtitle, R.id.price,
 								R.id.itemadd, R.id.itemcut, R.id.number });
-				listView6.setAdapter(listItemAdapter3);
+				listView6.setAdapter(listItemAdapter6);
 
 		return view;
 	}
@@ -198,14 +198,11 @@ public class tapTwo extends Fragment {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 1:
-
 				String response = (String) msg.obj;
 				parseJSONWithJSONObject(response);
 				// MyAdapter adapter = new MyAdapter(
 				// context,applist,resources,from,to);
-
 				// mListView.setAdapter(adapter);
-
 				// getActivity使用在适配器中适用于Fragment中
 				ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(
 						getActivity(), android.R.layout.simple_list_item_1,

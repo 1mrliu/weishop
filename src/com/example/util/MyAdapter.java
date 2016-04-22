@@ -2,25 +2,31 @@ package com.example.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import com.example.weishop.R;
-import android.annotation.SuppressLint;
+
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.weishop.R;
+import com.example.weishop.tapTwo;
 
 public class MyAdapter extends BaseAdapter {
 	
 	private ArrayList<HashMap<String, Object>> mAppList;
+	 ArrayList<HashMap<String, Object>> CartList=new ArrayList<HashMap<String,Object>>();
+	HashMap<String,Object> map=new HashMap<String,Object>();
+ 
+	SharedPreferences.Editor editor;
+	
 	private LayoutInflater mInflater;
 	private Context mContext;
 	private String[] keystring;
@@ -37,9 +43,7 @@ public class MyAdapter extends BaseAdapter {
 		
 	}
 
-	
-
-	// 适配一个listview中的item元素
+	//适配一个listView中的item元素
 	public MyAdapter(Context context,
 			ArrayList<HashMap<String, Object>> applist, int resources,
 			String[] from, int[] to) {
@@ -91,8 +95,9 @@ public class MyAdapter extends BaseAdapter {
 		}
 		HashMap<String, Object> appInfo = mAppList.get(position);
 		if (appInfo != null) {
-			String aname = (String) appInfo.get(keystring[1]);
+			
 			int mid = (Integer) appInfo.get(keystring[0]);
+			String aname =  appInfo.get(keystring[1]).toString();
 			String price = (String) appInfo.get(keystring[2]);
 			String number = String.valueOf(appInfo.get(keystring[5]));
 			holder.itemTitle.setText(aname);
@@ -111,7 +116,13 @@ public class MyAdapter extends BaseAdapter {
 		int num = (Integer) mAppList.get(position).get(keystring[5]);
 		num++;
 		mAppList.get(position).put(keystring[5], num);
+		editor=mContext.getSharedPreferences("data",Context.MODE_PRIVATE).edit();
+		editor.putInt("position",position);
+		editor.putInt("number", num);
+		editor.putString("title", (String)mAppList.get(position).get(keystring[1]));
+		editor.commit();
 		this.notifyDataSetChanged();
+	    
 	}
 
 	// 减少edittext中的数据
@@ -123,8 +134,15 @@ public class MyAdapter extends BaseAdapter {
 		}
 		// 将数据源中改变后的数据重新放进数据源中，再加载到item中
 		mAppList.get(position).put(keystring[5], num);
+	    editor=mContext.getSharedPreferences("data",Context.MODE_PRIVATE).edit();
+	    editor.putInt("position", position);
+		editor.putInt("number", num);
+		editor.commit();
+		
 		// 重新刷新页面
 		this.notifyDataSetChanged();
+				
+		
 	}
 
 	// 按钮监听事件，实现view中的监听事件
@@ -141,6 +159,8 @@ public class MyAdapter extends BaseAdapter {
 			int vid = v.getId();
 			if (vid == holder.btAdd.getId()) {
 				addNum(position);
+				
+				
 			} else if (vid == holder.btCut.getId()) {
 				cutNum(position);
 			}

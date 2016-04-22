@@ -20,9 +20,9 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 public class tapFour extends Fragment {
-	public String[] personal_data={"我的邮箱","我的积分","抽奖","登录","注册"};
+	public String[] personal_data={"我的邮箱","我的积分","抽奖","登录"};
 	public  int[]  image_icon={R.drawable.mail,R.drawable.integral,
-			R.drawable.lottery,R.drawable.ic_launcher,R.drawable.ic_launcher};
+			R.drawable.lottery,R.drawable.login};
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
@@ -42,7 +42,7 @@ public class tapFour extends Fragment {
 		 
 		//详细界面适配器
 				ArrayList<HashMap<String,Object>> listItem=new ArrayList<HashMap<String,Object>>();
-				for(int i=0;i<5;i++)
+				for(int i=0;i<4;i++)
 				{
 					HashMap<String,Object> map=new HashMap<String,Object>();
 					map.put("image_personal", image_icon[i]);

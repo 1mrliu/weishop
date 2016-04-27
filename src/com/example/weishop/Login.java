@@ -35,7 +35,7 @@ public class Login extends  ActionBarActivity{
 		EditText  ET_name=(EditText)findViewById(R.id.editText1);
 		final String name=ET_name.getText().toString();
 		EditText  ET_password=(EditText)findViewById(R.id.editText2);
-		String password=ET_password.getText().toString();
+		final String password=ET_password.getText().toString();
 		//登录
         Button login_bt=(Button)findViewById(R.id.button1);
         //注册
@@ -44,11 +44,12 @@ public class Login extends  ActionBarActivity{
 			
 			@Override
 			public void onClick(View v) {
-				if(name==null){
+				if((name.equals("admin"))&&(password.equals("123456"))){
+					Intent intent=new Intent(Login.this,Main.class);
+					startActivity(intent);
 					
-					Toast.makeText(Login.this, "请输入用户名", Toast.LENGTH_SHORT).show();
 				}else{
-				Toast.makeText(Login.this, "点击登陆", Toast.LENGTH_SHORT).show();
+					Toast.makeText(Login.this, "请输入用户名", Toast.LENGTH_SHORT).show();
 				}
 			}
 		});

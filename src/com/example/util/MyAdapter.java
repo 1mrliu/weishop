@@ -113,14 +113,12 @@ public class MyAdapter extends BaseAdapter {
 
 	// 增加edittext控件中的数据
 	public void addNum(int position) {
+	/*
+	 * 首次选购商品时，商品信息插入数据库，如果商品已存在数据库中，则UPDATE数据库，使数量加1
+	 */
 		int num = (Integer) mAppList.get(position).get(keystring[5]);
 		num++;
-		mAppList.get(position).put(keystring[5], num);
-		editor=mContext.getSharedPreferences("data",Context.MODE_PRIVATE).edit();
-		editor.putInt("position",position);
-		editor.putInt("number", num);
-		editor.putString("title", (String)mAppList.get(position).get(keystring[1]));
-		editor.commit();
+		
 		this.notifyDataSetChanged();
 	    
 	}
@@ -128,16 +126,16 @@ public class MyAdapter extends BaseAdapter {
 	// 减少edittext中的数据
 	public void cutNum(int position) {
 		// 获取一个item里面edittext中的数据源
+	/*
+	 * 减少商品的数量时先判断商品的商品是否还存在在数据库中，如果商品数量为0，则从数据库中删除
+	 */
 		int num = (Integer) mAppList.get(position).get(keystring[5]);
 		if (num > 0) {
 			num--;
 		}
-		// 将数据源中改变后的数据重新放进数据源中，再加载到item中
-		mAppList.get(position).put(keystring[5], num);
-	    editor=mContext.getSharedPreferences("data",Context.MODE_PRIVATE).edit();
-	    editor.putInt("position", position);
-		editor.putInt("number", num);
-		editor.commit();
+		
+		
+		
 		
 		// 重新刷新页面
 		this.notifyDataSetChanged();
@@ -157,8 +155,12 @@ public class MyAdapter extends BaseAdapter {
 		// 复写onClick方法用来监听按钮
 		public void onClick(View v) {
 			int vid = v.getId();
-			if (vid == holder.btAdd.getId()) {
+			if (vid == holder.btAdd.getId()) 
+				// 将添加的商品的信息加入数据库表fruit
+				
+			{
 				addNum(position);
+				
 				
 				
 			} else if (vid == holder.btCut.getId()) {

@@ -3,11 +3,11 @@ package com.example.data;
 public class Fruit {
 	private int id;
 	private int type_id ;
-	private  int fruit_id ;
+	private int fruit_id ;
     private String name;
     private double price;
     private int number;
-    public int getId() {
+    public  int getId() {
 		return id;
 	}
 	public void setId(int id) {
@@ -43,4 +43,15 @@ public class Fruit {
 	public void setNumber(int number) {
 		this.number = number;
 	}
+	public  Fruit(int id,int type_id,int fruit_id,String name,double price,int number) {
+		// TODO Auto-generated constructor stub
+		super();
+		this.id=id;
+		this.type_id=type_id;
+		this.fruit_id=fruit_id;
+		this.name=name;
+		this.price=price;
+		this.number=number;
+	}
+		
 }

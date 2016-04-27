@@ -11,10 +11,8 @@ import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
-import com.example.data.MyDatabaseHelper;
-
 public class Main extends FragmentActivity implements OnClickListener {
-	MyDatabaseHelper databasehelper  = new MyDatabaseHelper(this, "weishop.db", null, 2);
+	
 
 
 	private LinearLayout mTabHome;
@@ -157,7 +155,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 			break;
 		case R.id.id_tab_cart:
 			setSelect(2);
-			databasehelper.getWritableDatabase();
+			
 			break;
 		case R.id.id_tab_setting:
 			setSelect(3);

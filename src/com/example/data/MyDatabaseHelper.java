@@ -6,30 +6,27 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
-
-	public Context mContext;
-	public static final String CREATE_Fruit = "create table Fruit ("
-			+ "id integer primary key autoincrement, " 
-			+ "type_id integer , " 
-			+ "fruit_id integer , " 
-			+ "name text, "
-			+ "price real, "  
-			+ "number integer)";
+	private static final int VERSION = 1;// 定义数据库版本号
+	private static final String DBNAME = "weishop.db";// 定义数据库名
 	
-	public MyDatabaseHelper(Context context, String name,
-			CursorFactory factory, int version) {
-		super(context, name, factory, version);
-		mContext=context;
-	}
+	public MyDatabaseHelper(Context context) {
+		super(context, DBNAME, null, VERSION);
 
+	}
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		db.execSQL(CREATE_Fruit);	
+		db.execSQL("create table fruit ("
+				+ "id integer primary key autoincrement, " 
+				+ "type_id integer , " 
+				+ "fruit_id integer , " 
+				+ "name text, "
+				+ "price double, "  
+				+ "number integer)");	
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL("drop table if exists Fruit");
+		db.execSQL("drop table Fruit if exists Fruit");
 		onCreate(db);
 	}
 
